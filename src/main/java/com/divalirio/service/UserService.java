@@ -1,25 +1,34 @@
 package com.divalirio.service;
 
 
+import com.divalirio.exception.BusinessException;
 import com.divalirio.model.User;
 import com.divalirio.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class UserService extends BaseService{
 
     private final UserRepository repository;
-    private final BCryptPasswordEncoder encoder;
 
     public User create(User user) {
-
-        String passwordEncoded = encoder.encode(user.getPassword());
-
-        user.setPassword(passwordEncoded);
-
         return repository.save(user);
+    }
+
+    public User findById(UUID uuid){
+        return repository.findById(uuid).orElseThrow(() -> new BusinessException(getMessage("user.notfound")));
+    }
+
+    public List<User> findAll(){
+        return  repository.findAll();
+    }
+
+    public void deleteById(UUID uuid){
+        repository.deleteById(uuid);
     }
 }
