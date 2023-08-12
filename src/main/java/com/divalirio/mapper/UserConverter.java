@@ -29,7 +29,6 @@ public class UserConverter {
                 .name(request.getName())
                 .email(request.getEmail())
                 .phone(request.getPhone())
-                .lastName(request.getLastName())
                 .password(request.getPassword())
                 .build();
     }

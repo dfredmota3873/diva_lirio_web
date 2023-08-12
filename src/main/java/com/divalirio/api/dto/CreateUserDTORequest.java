@@ -10,6 +10,5 @@ public class CreateUserDTORequest {
     private String email;
     private String password;
     private String name;
-    private String lastName;
     private String phone;
 }
