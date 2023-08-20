@@ -1,14 +1,13 @@
 package com.divalirio.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -29,4 +28,9 @@ public class Product {
     private String size;
 
     private BigDecimal value;
+
+    private Integer stock;
+
+    @OneToMany(mappedBy = "product", targetEntity = ProductImage.class, fetch = FetchType.LAZY)
+    private List<ProductImage> images;
 }

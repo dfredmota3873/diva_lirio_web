@@ -38,6 +38,8 @@
         <spring.security.web.version>6.0.2</spring.security.web.version>
         <spring.starter.security.version>3.0.4</spring.starter.security.version>
         <jjwt.api.version>0.11.5</jjwt.api.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
     <dependencies>
         <dependency>
@@ -189,6 +191,12 @@
             <version>${jjwt.api.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk</artifactId>
+            <version>1.11.931</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -205,7 +213,7 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <plugin>
+<!--            <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
                 <executions>
@@ -229,7 +237,7 @@
                         </location>
                     </locations>
                 </configuration>
-            </plugin>
+            </plugin> -->
         </plugins>
     </build>
 

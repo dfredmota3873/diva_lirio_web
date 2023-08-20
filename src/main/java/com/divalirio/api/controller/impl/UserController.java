@@ -1,12 +1,12 @@
 package com.divalirio.api.controller.impl;
 
+import com.divalirio.api.controller.doc.IUserController;
 import com.divalirio.api.dto.CreateUserDTORequest;
 import com.divalirio.api.dto.UserDTO;
 import com.divalirio.mapper.UserConverter;
 import com.divalirio.model.User;
 import com.divalirio.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
