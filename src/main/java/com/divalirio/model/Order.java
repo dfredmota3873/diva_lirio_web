@@ -20,9 +20,9 @@ import java.util.UUID;
 public class Order {
 
     @Id
-    private UUID          id;
+    private UUID id;
 
-    private BigDecimal    totalValue;
+    private BigDecimal totalValue;
 
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime dtOrderCreated;
@@ -30,5 +30,8 @@ public class Order {
     private BigDecimal freight;
 
     private String observations;
+
+    @OneToMany(mappedBy = "order", targetEntity = OrderItem.class, fetch = FetchType.LAZY)
+    private List<OrderItem> itens;
 
 }

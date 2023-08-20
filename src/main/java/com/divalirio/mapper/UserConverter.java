@@ -18,7 +18,6 @@ public class UserConverter {
                 .phone(user.getPhone())
                 .email(user.getEmail())
                 .name(user.getName())
-                .lastName(user.getLastName())
                 .password(user.getPassword())
                 .build();
     }
