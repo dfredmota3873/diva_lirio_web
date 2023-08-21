@@ -11,11 +11,15 @@ import java.util.UUID;
 @Setter
 @Builder
 @AllArgsConstructor
-public class UserDTO {
+public class AddressDTO {
 
     private UUID id;
-    private String email;
-    private String password;
-    private String name;
-    private String phone;
+    private String street;
+    private String number;
+    private String neighborhood;
+    private String state;
+    private String zipCode;
+    private String complement;
+
+    private UUID userId;
 }

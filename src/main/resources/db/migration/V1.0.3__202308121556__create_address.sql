@@ -4,8 +4,10 @@ CREATE TABLE divalirio.address (    id     uuid NOT NULL,
                                     neighborhood text NOT NULL,
                                     state text NOT NULL ,
                                     user_id uuid NOT NULL,
+                                    complement text NULL,
+                                    zip_code text NULL,
                                     created_at TIMESTAMP NOT NULL,
-                                    updated_at TIMESTAMP NOT NULL,
+                                    updated_at TIMESTAMP NULL,
                                     CONSTRAINT address_pkey PRIMARY KEY (id));
 
 ALTER TABLE divalirio.address
