@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,10 +16,11 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "products")
+@Table(name = "products" , schema = "divalirio")
 public class Product {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     private String name;
@@ -33,4 +35,20 @@ public class Product {
 
     @OneToMany(mappedBy = "product", targetEntity = ProductImage.class, fetch = FetchType.LAZY)
     private List<ProductImage> images;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        createdAt = LocalDateTime.now();
+    }
 }

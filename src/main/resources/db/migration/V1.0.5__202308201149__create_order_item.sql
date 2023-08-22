@@ -3,6 +3,8 @@ CREATE TABLE divalirio.order_itens (    id     uuid NOT NULL,
                                    order_id uuid NOT NULL,
                                    quantity integer NOT NULL,
                                    observation text NULL,
+                                   created_at TIMESTAMP NOT NULL,
+                                   updated_at TIMESTAMP NULL,
                                    CONSTRAINT order_itens_pkey PRIMARY KEY (id));
 
 
