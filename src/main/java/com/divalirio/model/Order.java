@@ -37,7 +37,7 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "order", targetEntity = OrderItem.class, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order", targetEntity = OrderItem.class, fetch = FetchType.EAGER)
     private List<OrderItem> itens;
 
     @Temporal(TemporalType.TIMESTAMP)

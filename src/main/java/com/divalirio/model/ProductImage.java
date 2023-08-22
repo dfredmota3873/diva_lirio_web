@@ -13,10 +13,11 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "product_image")
+@Table(name = "product_image" , schema = "divalirio")
 public class ProductImage {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     private String path;

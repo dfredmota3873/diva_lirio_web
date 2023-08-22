@@ -12,6 +12,8 @@ import com.divalirio.repository.ProductRepository;
 import com.divalirio.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,6 +31,7 @@ public class OrderService extends BaseService{
 
     private final UserRepository userRepository;
 
+    @Transactional
     public Order create(Order order){
 
         // validate if user exists
@@ -42,12 +45,17 @@ public class OrderService extends BaseService{
             throw  new BusinessException("itens.empty");
         }
 
-        BigDecimal totalValue = new BigDecimal(0.0);
+        order.getItens().stream().forEach( o -> o.setProduct(populateProduct(o.getProduct().getId())));
 
-        // calculate total price for order
-        order.getItens().stream().forEach( o -> calculateTotalValueOrder(o, totalValue));
+
+        BigDecimal totalValue = order.getItens().stream()
+                .map(x -> x.getProduct().getValue().multiply(new BigDecimal(x.getQuantity())))    // map
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         order.setTotalValue(totalValue);
+
+        // calculate total price for order
+       // order.getItens().stream().forEach( o -> calculateTotalValueOrder(o, totalValue));
 
         order = orderRepository.save(order);
 
@@ -98,5 +106,9 @@ public class OrderService extends BaseService{
 
         productRepository.save(productDB);
 
+    }
+
+    private Product populateProduct(UUID product){
+        return productRepository.findById(product).orElseThrow(() -> new BusinessException(getMessage("product.notfound")));
     }
 }

@@ -4,7 +4,6 @@ import com.divalirio.api.controller.doc.IProductController;
 import com.divalirio.api.dto.CreateProductDTORequest;
 import com.divalirio.api.dto.ProductDTO;
 import com.divalirio.mapper.ProductConverter;
-import com.divalirio.model.Address;
 import com.divalirio.model.Product;
 import com.divalirio.service.ProductService;
 import lombok.RequiredArgsConstructor;
