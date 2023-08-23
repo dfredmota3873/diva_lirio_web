@@ -26,7 +26,7 @@ public interface IProductController {
             )
     })
     @PostMapping(value = "/create")
-    ResponseEntity<ProductDTO> create(@RequestBody CreateProductDTORequest dtoRequest);
+    ResponseEntity<ProductDTO> create(@Valid @RequestBody CreateProductDTORequest dtoRequest);
 
     @Operation(summary = "Lista todos os produtos")
     @ApiResponses(value = {

@@ -1,6 +1,7 @@
 package com.divalirio.service;
 
 import com.divalirio.exception.BusinessException;
+import com.divalirio.exception.EntityNotFoundException;
 import com.divalirio.model.Product;
 import com.divalirio.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ public class ProductService extends  BaseService{
     }
 
     public Product findById(UUID id) {
-        return repository.findById(id).orElseThrow(() -> new BusinessException(getMessage("product.notfound")));
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(getMessage("product.notfound")));
     }
 
     public List<Product> findAll() {

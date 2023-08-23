@@ -26,7 +26,7 @@ public interface IOrderController {
             )
     })
     @PostMapping(value = "/create")
-    ResponseEntity<OrderDTO> create(@RequestBody CreateOrderDTORequest dtoRequest);
+    ResponseEntity<OrderDTO> create(@Valid @RequestBody CreateOrderDTORequest dtoRequest);
 
     @Operation(summary = "Lista todos as ordens")
     @ApiResponses(value = {

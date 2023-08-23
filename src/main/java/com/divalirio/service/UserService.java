@@ -1,7 +1,7 @@
 package com.divalirio.service;
 
 
-import com.divalirio.exception.BusinessException;
+import com.divalirio.exception.EntityNotFoundException;
 import com.divalirio.model.User;
 import com.divalirio.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ public class UserService extends BaseService{
     }
 
     public User findById(UUID uuid){
-        return repository.findById(uuid).orElseThrow(() -> new BusinessException(getMessage("user.notfound")));
+        return repository.findById(uuid).orElseThrow(() -> new EntityNotFoundException(getMessage("user.notfound")));
     }
 
     public List<User> findAll(){

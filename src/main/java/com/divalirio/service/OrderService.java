@@ -1,6 +1,7 @@
 package com.divalirio.service;
 
 import com.divalirio.exception.BusinessException;
+import com.divalirio.exception.EntityNotFoundException;
 import com.divalirio.model.Order;
 import com.divalirio.model.OrderItem;
 import com.divalirio.model.Product;
@@ -35,7 +36,7 @@ public class OrderService extends BaseService{
     public Order create(Order order){
 
         // validate if user exists
-        User user = userRepository.findById(order.getUser().getId()).orElseThrow(() -> new BusinessException(getMessage("user.notfound")));
+        User user = userRepository.findById(order.getUser().getId()).orElseThrow(() -> new EntityNotFoundException(getMessage("user.notfound")));
 
         order.setUser(user);
 
@@ -74,7 +75,7 @@ public class OrderService extends BaseService{
     }
 
     public Order findById(UUID id){
-        return orderRepository.findById(id).orElseThrow(() -> new BusinessException(getMessage("order.notfound")));
+        return orderRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(getMessage("order.notfound")));
     }
 
     public List<Order> findAll(){
@@ -100,7 +101,7 @@ public class OrderService extends BaseService{
 
     private void updateStockProduct(Product product, Integer quantityDecrease) {
 
-        Product productDB = productRepository.findById(product.getId()).orElseThrow(() -> new BusinessException(getMessage("product.notfound")));
+        Product productDB = productRepository.findById(product.getId()).orElseThrow(() -> new EntityNotFoundException(getMessage("product.notfound")));
 
         productDB.setStock(productDB.getStock() - quantityDecrease);
 
@@ -109,6 +110,6 @@ public class OrderService extends BaseService{
     }
 
     private Product populateProduct(UUID product){
-        return productRepository.findById(product).orElseThrow(() -> new BusinessException(getMessage("product.notfound")));
+        return productRepository.findById(product).orElseThrow(() -> new EntityNotFoundException(getMessage("product.notfound")));
     }
 }

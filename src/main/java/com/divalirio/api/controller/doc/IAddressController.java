@@ -26,7 +26,7 @@ public interface IAddressController {
             )
     })
     @PostMapping(value = "/create")
-    ResponseEntity<AddressDTO> create(@RequestBody CreateAddressDTORequest dtoRequest);
+    ResponseEntity<AddressDTO> create(@Valid @RequestBody CreateAddressDTORequest dtoRequest);
 
     @Operation(summary = "Lista todos os endereços")
     @ApiResponses(value = {

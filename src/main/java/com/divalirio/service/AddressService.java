@@ -1,6 +1,7 @@
 package com.divalirio.service;
 
 import com.divalirio.exception.BusinessException;
+import com.divalirio.exception.EntityNotFoundException;
 import com.divalirio.model.Address;
 import com.divalirio.model.User;
 import com.divalirio.repository.AddressRepository;
@@ -21,7 +22,7 @@ public class AddressService extends BaseService {
 
     public Address create(Address address) {
 
-        User user = userRepository.findById(address.getUser().getId()).orElseThrow(() -> new BusinessException(getMessage("user.notfound")));
+        User user = userRepository.findById(address.getUser().getId()).orElseThrow(() -> new EntityNotFoundException(getMessage("user.notfound")));
 
         address.setUser(user);
 
@@ -31,7 +32,7 @@ public class AddressService extends BaseService {
     }
 
     public Address findById(UUID id) {
-        return repository.findById(id).orElseThrow(() -> new BusinessException(getMessage("address.notfound")));
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(getMessage("address.notfound")));
     }
 
     public List<Address> findAll() {
